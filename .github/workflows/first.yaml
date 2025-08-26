@@ -2,6 +2,9 @@ name: Our First Workflow
 
 on:
   push:
+  schedule:
+    - cron: '30 5 * * 1,3'   # 월/수 05:30 UTC
+    - cron: '30 5 * * 2,4'   # 화/목 05:30 UTC
 
 jobs:
   echo:
@@ -14,19 +17,12 @@ jobs:
     steps:
       - name: Print working directory
         run: pwd
+
       - name: Change Directory and List files
         run: |
           cd ~
           ls -al
 
----
-
-on:
-  schedule:
-    - cron: '30 5 * * 1,3'
-    - cron: '30 5 * * 2,4'
-
-jobs:
   test_schedule:
     runs-on: ubuntu-latest
     steps:
